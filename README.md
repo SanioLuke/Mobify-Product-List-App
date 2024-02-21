@@ -16,7 +16,7 @@ The instructions for using this application are :
 Screenshots
 -----------
 
-![screenshot_01][1]!![screenshot_02][2] ![screenshot_03][3]
+![screenshot_01][1] ![screenshot_02][2] ![screenshot_03][3]
 
 
 Usage
