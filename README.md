@@ -1,13 +1,17 @@
-![ads logo][adslogo] Android Ads Module [Version]() 1.0.0
+![ads logo][adslogo] Mobify - Product List App [Version]() 1.0.0
 ======
 
-This latest Android Ads Module has been simplified with implementation and reduced code & more adaptive processing of ads at runtime.
+This android application is a small integration of API call for retriving sample products data from dummy API server and displaying the list of products along with its other details. The app includes pages like
 
-* Now, the app will run even when the ads have been blocked by external ad blockers.
-* New ads type like **Collapsible ads** & **Banner ads** have been implemented with in this module.
-* Reduced the number of paramters for the developers whiling implementing the ads module.
-* Implemented One Signal for Remote Cloud Notification
-* **Facebook Ads** also implemented with no extra implementation for the developers
+* Splash Screen
+* Home Page
+* Product Display Page
+
+The instructions for using this application are :
+* Whiling opening the app, first screen that pops up is **SplashScreen**. Please wait for the splashscreen to load and go to home page.
+* After that, the **HomePage** opens up and a API call is triggered in which with successful call trigger, the sample product list is display to the user.
+* The user can scroll through the home page and find their desired product to view.
+* While clicking/tapping on the desired product, another page called **Product Display** is opened which contains the details of that clicked products like information like - Product Name, Cateogry, Images, Rating, etc.
 
 Screenshots
 -----------
