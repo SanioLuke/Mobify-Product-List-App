@@ -1,16 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
+    android:layout_height="wrap_content"
+    app:cardElevation="0dp"
+    app:strokeWidth="0.5dp"
+    app:strokeColor="@color/themeColorLight"
+    android:layout_marginTop="10dp"
+    app:cardBackgroundColor="@color/white">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/piImage"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:src="@drawable/sample_image"
-        app:civ_border_color="@color/themeColor"
-        app:civ_border_width="2dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
-</RelativeLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/piImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/sample_image"
+            android:layout_centerVertical="true"
+            app:civ_border_color="@color/themeColorLight"
+            app:civ_border_width="1dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/piImage"
+            android:layout_toStartOf="@+id/piFavouriteIcon"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:id="@+id/piName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Name"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/themeColor"
+                android:fontFamily="@font/poppins_semibold"/>
+
+            <TextView
+                android:id="@+id/piCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Category"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/piPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Price"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/black"/>
+
+            <RatingBar
+                android:id="@+id/piRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progressTint="@color/themeColor"
+                style="@style/Widget.AppCompat.RatingBar.Small" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/piFavouriteIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_favorite"
+            app:tint="@color/themeColor"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -4,7 +4,8 @@
     <color name="black">#040404</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#80000000</color>
-    <color name="themeColor">#626991</color>
+    <color name="themeColor">#1F1543</color>
+    <color name="themeColorLight">#4D1F1543</color>
     <color name="greyColor">#A1A1A1</color>
     <color name="transparent">#00FFFFFF</color>
 

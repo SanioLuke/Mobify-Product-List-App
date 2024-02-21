@@ -22,7 +22,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_semibold"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
+        android:textColor="@color/themeColor"
         android:textAlignment="center"
         android:textSize="17sp"/>
 

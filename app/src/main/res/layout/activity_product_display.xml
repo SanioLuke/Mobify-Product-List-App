@@ -13,6 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:contentInsetLeft="0dp"
+        android:background="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:contentInsetStart="0dp">
 
@@ -29,17 +30,20 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:padding="5dp"
                 android:src="@drawable/ic_back"
-                app:tint="@color/black" />
+                app:tint="@color/themeColor" />
 
             <TextView
                 android:id="@+id/productDisplayTitleText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_toEndOf="@+id/productDisplayBackButton"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_semibold"
                 android:includeFontPadding="false"
-                android:text="@string/app_name"
-                android:textColor="@color/black"
+                android:maxLines="1"
+                android:textColor="@color/themeColor"
                 android:textSize="16sp" />
 
         </RelativeLayout>
@@ -51,11 +55,279 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/productDisplayToolbar"
-        android:background="@color/black10"
-        android:layout_marginBottom="10dp"/>
+        android:background="@color/black10" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    
+        android:layout_height="match_parent"
+        android:layout_below="@+id/productDisplayToolbarDivider">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/productDisplaySliderView"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="1dp"
+            app:strokeColor="@color/themeColorLight"
+            app:strokeWidth="0.5dp">
+
+            <ViewFlipper
+                android:id="@+id/pdsFlipper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:flipInterval="3000"
+                android:inAnimation="@android:anim/fade_in"
+                android:outAnimation="@android:anim/fade_out" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/productDisplaySliderView"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="-75dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/themeColorLight"
+            app:strokeWidth="0.5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/pdSubmitButton">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:paddingTop="100dp">
+
+                        <TextView
+                            android:id="@+id/pdName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingHorizontal="20dp"
+                            android:text="Product Name"
+                            android:textAlignment="center"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <RatingBar
+                            android:id="@+id/pdRate"
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:progressTint="@color/themeColor" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="20dp">
+
+                            <TextView
+                                android:id="@+id/pdPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="20dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="₹ 100.23"
+                                android:textAlignment="center"
+                                android:textColor="@color/themeColor"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/pdOriginalPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="20dp"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/poppins_light"
+                                android:textAlignment="center"
+                                android:textColor="@color/black60" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/pdDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_light"
+                            android:paddingHorizontal="20dp"
+                            android:text="Product Description"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/pdCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_light"
+                            android:paddingHorizontal="20dp"
+                            android:text="Category : "
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/pdBrand"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_light"
+                            android:paddingHorizontal="20dp"
+                            android:text="Brand : "
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:background="@color/themeColorLight" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/pdQuantityRemoveButton"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/ic_remove"
+                                    android:padding="10dp"
+                                    app:tint="@color/themeColor"
+                                    android:background="@drawable/large_curved_border"
+                                    android:backgroundTint="@color/black5"
+                                    tools:ignore="NestedWeights" />
+
+                                <TextView
+                                    android:id="@+id/pdUserSelectedQuantity"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="1"
+                                    android:layout_weight="1"
+                                    android:textSize="17sp"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/themeColor"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"/>
+
+                                <ImageView
+                                    android:id="@+id/pdQuantityAddButton"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/ic_add"
+                                    android:padding="10dp"
+                                    app:tint="@color/themeColor"
+                                    android:background="@drawable/large_curved_border"
+                                    android:backgroundTint="@color/black5"
+                                    tools:ignore="NestedWeights" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:background="@color/themeColorLight" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/pdStocks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:justificationMode="inter_word"
+                            android:paddingHorizontal="20dp"
+                            android:textSize="17sp"
+                            android:drawablePadding="10dp"
+                            android:text="Remaining Stocks : "
+                            android:textAlignment="center"
+                            android:textColor="#F44336"
+                            android:layout_marginTop="20dp"
+                            android:includeFontPadding="false"
+                            tools:ignore="UnusedAttribute"
+                            app:drawableLeftCompat="@drawable/ic_error"
+                            app:drawableTint="#F44336" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_light"
+                            android:justificationMode="inter_word"
+                            android:paddingHorizontal="20dp"
+                            android:layout_marginTop="20dp"
+                            android:text="Total Price"
+                            android:includeFontPadding="false"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            tools:ignore="UnusedAttribute" />
+
+                        <TextView
+                            android:id="@+id/pdTotalPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingHorizontal="20dp"
+                            android:text="₹ 100.23"
+                            android:textAlignment="center"
+                            android:textAllCaps="true"
+                            android:textColor="@color/themeColor"
+                            android:includeFontPadding="false"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+                <Button
+                    android:id="@+id/pdSubmitButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:includeFontPadding="false"
+                    android:text="Buy Now"
+                    android:textAllCaps="true"
+                    android:textSize="17sp"
+                    app:backgroundTint="@color/themeColor" />
+
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
 </RelativeLayout>

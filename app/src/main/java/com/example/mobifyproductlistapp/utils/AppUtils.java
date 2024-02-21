@@ -3,9 +3,11 @@ package com.example.mobifyproductlistapp.utils;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
@@ -158,5 +160,15 @@ public class AppUtils {
     public static float dipToPixels(Context context, float dipValue) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, metrics);
+    }
+
+    public static Dialog createDialogBox(Activity activity, int view_id, boolean isclose) {
+        Dialog dialog = new Dialog(activity);
+        dialog.setContentView(view_id);
+        dialog.setCanceledOnTouchOutside(isclose);
+        dialog.setCancelable(isclose);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+        return dialog;
     }
 }
