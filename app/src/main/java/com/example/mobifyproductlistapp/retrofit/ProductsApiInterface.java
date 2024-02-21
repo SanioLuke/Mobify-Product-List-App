@@ -13,7 +13,7 @@ import retrofit2.http.Path;
 
 public interface ProductsApiInterface {
 
-    static final String TAG = "ProductsApiInterface";
+    String TAG = "ProductsApiInterface";
 
     @GET("products")
     Call<ResponseModel> getAllProducts();
@@ -21,7 +21,7 @@ public interface ProductsApiInterface {
     @GET("products/{id}")
     Call<ProductModel> getProductDetail(@Path("id") int productId);
 
-    public interface ProductsInterface {
+    interface ProductsInterface {
         default void getProducts(List<ProductModel> products) {
             Log.e(TAG, "Products: " + products);
         }

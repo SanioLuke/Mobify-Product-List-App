@@ -1,33 +1,30 @@
 package com.example.mobifyproductlistapp.activities;
 
-import static com.example.mobifyproductlistapp.retrofit.ProductsApiInterface.*;
+import static com.example.mobifyproductlistapp.retrofit.ProductsApiInterface.ProductsInterface;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.AdapterViewFlipper;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.mobifyproductlistapp.R;
 import com.example.mobifyproductlistapp.databinding.ActivityProductDisplayBinding;
 import com.example.mobifyproductlistapp.models.ProductModel;
 import com.example.mobifyproductlistapp.retrofit.ProductsApiHandler;
-import com.example.mobifyproductlistapp.retrofit.ProductsApiInterface;
 import com.example.mobifyproductlistapp.utils.AppUtils;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
+@SuppressWarnings("all")
 public class ProductDisplayActivity extends AppCompatActivity {
 
     ActivityProductDisplayBinding binding;
@@ -35,7 +32,6 @@ public class ProductDisplayActivity extends AppCompatActivity {
     int productId;
     int currentQuantity= 1;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppUtils.lightBackgroundStatusBarDesign(ProductDisplayActivity.this);
@@ -49,59 +45,60 @@ public class ProductDisplayActivity extends AppCompatActivity {
 
         binding.productDisplayBackButton.setOnClickListener(v-> onBackPressed());
 
+        // Product Item Details retrieval API Call
         ProductsApiHandler.callProductDetailApi(productId, new ProductsInterface() {
             @Override
             public void getProductItem(ProductModel product) {
-                if(loading_dialog!=null && loading_dialog.isShowing()) loading_dialog.dismiss();
-                if(product!=null){
+                if (loading_dialog != null && loading_dialog.isShowing()) loading_dialog.dismiss();
+                if (product != null) {
+
+                    loadImagesFlipper(product.getImages());
+
                     binding.productDisplayTitleText.setText(product.getTitle());
                     binding.pdName.setText(product.getTitle());
                     binding.pdRate.setRating((float) product.getRating());
 
-                    double org_price= product.getPrice();
-                    double discount_percent= product.getDiscountPercentage();
-                    double discount_val= AppUtils.limitDouble(discount_percent/100*org_price, "#.##");
-                    double discounted_price= AppUtils.limitDouble(org_price - discount_val, "#.##");
-                    binding.pdPrice.setText("₹ "+discounted_price);
+                    double org_price = product.getPrice();
+                    double discount_percent = product.getDiscountPercentage();
+                    double discount_val = AppUtils.limitDouble(discount_percent / 100 * org_price, "#.##");
+                    double discounted_price = AppUtils.limitDouble(org_price - discount_val, "#.##");
+                    binding.pdPrice.setText("₹ " + discounted_price);
 
-                    binding.pdOriginalPrice.setText("(₹ "+product.getPrice()+")");
+                    binding.pdOriginalPrice.setText("(₹ " + product.getPrice() + ")");
                     binding.pdOriginalPrice.setPaintFlags(binding.pdOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-                    binding.pdDescription.setText("Product Description : "+product.getDescription());
-                    binding.pdCategory.setText("Category : "+product.getCategory());
-                    binding.pdBrand.setText("Brand : "+product.getBrand());
-                    loadImagesFlipper(product.getImages());
-                    binding.pdUserSelectedQuantity.setText(""+currentQuantity);
-                    binding.pdStocks.setText("Remaining Stocks : "+product.getStock());
-                    binding.pdTotalPrice.setText("₹ "+AppUtils.limitDouble((currentQuantity*discounted_price), "#.##"));
+                    binding.pdDescription.setText("Product Description : " + product.getDescription());
+                    binding.pdCategory.setText("Category : " + product.getCategory());
+                    binding.pdBrand.setText("Brand : " + product.getBrand());
+                    binding.pdUserSelectedQuantity.setText("" + currentQuantity);
+                    binding.pdStocks.setText("Remaining Stocks : " + product.getStock());
+                    binding.pdTotalPrice.setText("₹ " + AppUtils.limitDouble((currentQuantity * discounted_price), "#.##"));
 
                     binding.pdQuantityAddButton.setOnClickListener(v->{
-                        if(currentQuantity < product.getStock()){
-                            currentQuantity+=1;
-                            binding.pdUserSelectedQuantity.setText(""+currentQuantity);
-                            binding.pdTotalPrice.setText(""+AppUtils.limitDouble((currentQuantity*discounted_price), "#.##"));
-                        }
-                        else {
+                        if (currentQuantity < product.getStock()) {
+                            currentQuantity += 1;
+                            binding.pdUserSelectedQuantity.setText("" + currentQuantity);
+                            binding.pdTotalPrice.setText("" + AppUtils.limitDouble((currentQuantity * discounted_price), "#.##"));
+                        } else {
                             Toast.makeText(ProductDisplayActivity.this, "Reached the maximum stock limit !", Toast.LENGTH_SHORT).show();
                         }
                     });
 
                     binding.pdQuantityRemoveButton.setOnClickListener(v->{
                         if(currentQuantity > 1){
-                            currentQuantity-=1;
-                            binding.pdUserSelectedQuantity.setText(""+currentQuantity);
-                            binding.pdTotalPrice.setText(""+AppUtils.limitDouble((currentQuantity*discounted_price), "#.##"));
+                            currentQuantity -= 1;
+                            binding.pdUserSelectedQuantity.setText("" + currentQuantity);
+                            binding.pdTotalPrice.setText("" + AppUtils.limitDouble((currentQuantity * discounted_price), "#.##"));
                         }
                     });
 
-                    binding.pdSubmitButton.setOnClickListener(v->{
+                    binding.pdSubmitButton.setOnClickListener(v -> {
                         Snackbar.make(binding.getRoot(), "Product successfully purchased", Snackbar.LENGTH_SHORT).show();
-                        new Handler().postDelayed(()-> finish(), 1500);
+                        new Handler().postDelayed(() -> finish(), 1500);
                     });
-                }
-                else{
+                } else {
                     Snackbar.make(binding.getRoot(), "Unable to find the selected product !! Please try again", Snackbar.LENGTH_SHORT).show();
-                    new Handler().postDelayed(()-> finish(), 1500);
+                    new Handler().postDelayed(() -> finish(), 1500);
                 }
             }
         });

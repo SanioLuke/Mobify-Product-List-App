@@ -38,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
         loading_dialog= AppUtils.createDialogBox(HomeActivity.this, R.layout.progress_dialog, false);
         if(!isFinishing() && loading_dialog!=null && !loading_dialog.isShowing()) loading_dialog.show();
 
+        // Products retrieval API Call
         ProductsApiHandler.callProductsApi(new ProductsInterface() {
             @Override
             public void getProducts(List<ProductModel> products) {

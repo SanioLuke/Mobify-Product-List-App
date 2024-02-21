@@ -30,7 +30,8 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:padding="5dp"
                 android:src="@drawable/ic_back"
-                app:tint="@color/themeColor" />
+                app:tint="@color/themeColor"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/productDisplayTitleText"
@@ -123,7 +124,8 @@
                             android:textAlignment="center"
                             android:textAllCaps="true"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            tools:ignore="HardcodedText" />
 
                         <RatingBar
                             android:id="@+id/pdRate"
@@ -144,10 +146,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginVertical="20dp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:text="₹ 100.23"
+                                android:text="₹ 0"
                                 android:textAlignment="center"
                                 android:textColor="@color/themeColor"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                tools:ignore="HardcodedText" />
 
                             <TextView
                                 android:id="@+id/pdOriginalPrice"
@@ -167,7 +170,8 @@
                             android:fontFamily="@font/poppins_light"
                             android:paddingHorizontal="20dp"
                             android:text="Product Description"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            tools:ignore="HardcodedText" />
 
                         <TextView
                             android:id="@+id/pdCategory"
@@ -177,7 +181,8 @@
                             android:paddingHorizontal="20dp"
                             android:text="Category : "
                             android:layout_marginTop="10dp"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            tools:ignore="HardcodedText" />
 
                         <TextView
                             android:id="@+id/pdBrand"
@@ -187,7 +192,8 @@
                             android:paddingHorizontal="20dp"
                             android:text="Brand : "
                             android:layout_marginTop="10dp"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            tools:ignore="HardcodedText" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -221,7 +227,7 @@
                                     app:tint="@color/themeColor"
                                     android:background="@drawable/large_curved_border"
                                     android:backgroundTint="@color/black5"
-                                    tools:ignore="NestedWeights" />
+                                    tools:ignore="ContentDescription,NestedWeights" />
 
                                 <TextView
                                     android:id="@+id/pdUserSelectedQuantity"
@@ -233,7 +239,8 @@
                                     android:textAlignment="center"
                                     android:textColor="@color/themeColor"
                                     android:gravity="center"
-                                    android:layout_gravity="center"/>
+                                    android:layout_gravity="center"
+                                    tools:ignore="HardcodedText" />
 
                                 <ImageView
                                     android:id="@+id/pdQuantityAddButton"
@@ -245,7 +252,7 @@
                                     app:tint="@color/themeColor"
                                     android:background="@drawable/large_curved_border"
                                     android:backgroundTint="@color/black5"
-                                    tools:ignore="NestedWeights" />
+                                    tools:ignore="ContentDescription,NestedWeights" />
 
                             </LinearLayout>
 
@@ -263,7 +270,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_semibold"
-                            android:justificationMode="inter_word"
                             android:paddingHorizontal="20dp"
                             android:textSize="17sp"
                             android:drawablePadding="10dp"
@@ -272,9 +278,9 @@
                             android:textColor="#F44336"
                             android:layout_marginTop="20dp"
                             android:includeFontPadding="false"
-                            tools:ignore="UnusedAttribute"
                             app:drawableLeftCompat="@drawable/ic_error"
-                            app:drawableTint="#F44336" />
+                            app:drawableTint="#F44336"
+                            tools:ignore="HardcodedText" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -287,7 +293,7 @@
                             android:includeFontPadding="false"
                             android:textAlignment="center"
                             android:textColor="@color/black"
-                            tools:ignore="UnusedAttribute" />
+                            tools:ignore="UnusedAttribute,HardcodedText" />
 
                         <TextView
                             android:id="@+id/pdTotalPrice"
@@ -295,12 +301,13 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_semibold"
                             android:paddingHorizontal="20dp"
-                            android:text="₹ 100.23"
+                            android:text="₹ 0"
                             android:textAlignment="center"
                             android:textAllCaps="true"
                             android:textColor="@color/themeColor"
                             android:includeFontPadding="false"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            tools:ignore="HardcodedText" />
 
                     </LinearLayout>
 
@@ -320,7 +327,8 @@
                     android:text="Buy Now"
                     android:textAllCaps="true"
                     android:textSize="17sp"
-                    app:backgroundTint="@color/themeColor" />
+                    app:backgroundTint="@color/themeColor"
+                    tools:ignore="HardcodedText"/>
 
 
             </RelativeLayout>

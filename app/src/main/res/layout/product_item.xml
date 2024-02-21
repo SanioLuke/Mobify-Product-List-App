@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="0dp"
@@ -18,7 +19,7 @@
             android:id="@+id/piImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/sample_image"
+            android:src="@mipmap/ic_launcher_foreground"
             android:layout_centerVertical="true"
             app:civ_border_color="@color/themeColorLight"
             app:civ_border_width="1dp" />
@@ -40,7 +41,8 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textColor="@color/themeColor"
-                android:fontFamily="@font/poppins_semibold"/>
+                android:fontFamily="@font/poppins_semibold"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/piCategory"
@@ -51,7 +53,8 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_light"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/piPrice"
@@ -62,7 +65,8 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_light"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                tools:ignore="HardcodedText" />
 
             <RatingBar
                 android:id="@+id/piRate"
@@ -79,7 +83,8 @@
             android:src="@drawable/ic_favorite"
             app:tint="@color/themeColor"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            tools:ignore="ContentDescription" />
 
     </RelativeLayout>
 

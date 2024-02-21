@@ -15,6 +15,7 @@ import com.example.mobifyproductlistapp.utils.AppInterfaces;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("all")
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ListViewHolder> {
 
     Activity activity;
