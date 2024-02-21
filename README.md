@@ -38,7 +38,7 @@ To connect to the dummy API, I have used ``Retrofit API Integration`` inside a s
 ```
 
 ### Retrofit Interface
-Now, to add query to the established retrofit connection, I have made a custom retrofit based interfaces, so that using these interfaces the API calling can be handling with repective body and queries 
+Now, to add query to the established retrofit connection, I have made a custom retrofit based ``interfaces``, so that using these interfaces the API calling can be handling with repective body and queries 
 ``` Retrofit Interfaces
     @GET("products")
     Call<ResponseModel> getAllProducts();
@@ -51,7 +51,7 @@ Now, to add query to the established retrofit connection, I have made a custom r
 Now, after success Retorfit connection and query setup, I have made a custom handler functions to fetch corresponding response so that handling the data in activity would be much easier.
 
 * For that, I have made custom functions with each having a interface parameter, so that after successful retrival of the data, the data can be directly passed to the activity for display
-* Created 2 functions: 1. callProductsApi() for API call for all the products, 2. callProductDetailApi() for retrieving details of a particular product 
+* Created 2 functions: 1. ``callProductsApi()`` for API call for all the products, 2. ``callProductDetailApi()`` for retrieving details of a particular product 
 
 ``` API Products Interface
     interface ProductsInterface {
@@ -114,8 +114,6 @@ Now, after success Retorfit connection and query setup, I have made a custom han
 
 ### API Calling
 Now the successful intergration of API is called on Home Page and Product Display Page to display the details to the user
-* ``isLoaded`` will provide a boolean value by with you can determine the ad is loaded or not
-* Also can be use for determining whether the user has received the reward or not
 
 ```java
     // Products retrieval API Call
@@ -133,8 +131,8 @@ Now the successful intergration of API is called on Home Page and Product Displa
         });
 ```
 ### Design (XML)
-* For displaying the list of products, I have used recyclerview
-* For product item design, I have used MaterialCardView and nested relativelayouts and linearlayouts
+* For displaying the list of products, I have used ``RecyclerView``
+* For product item design, I have used ``MaterialCardView`` and nested ``RelativeLayout`` and ``LinearLayout``
 
 ``` xml
     <androidx.recyclerview.widget.RecyclerView
@@ -145,22 +143,9 @@ Now the successful intergration of API is called on Home Page and Product Displa
         android:layout_marginHorizontal="10dp"/>
 ```
 
-
-
-Cloud Notification
------
-
-### One Signal
-To start using the One Signal you have to uncomment this line of code which is inside the ``onCreate()`` which in turn is inside the file which extends ``Application`` class
-
-```java
-    // UnComment this line if you require onesignal
-    // Globals.initOneSignal(app.getApplicationContext(), "**YOUR_ONE_SIGNAL_APP_ID**");
-```
-
 # Contributors
 
-[Sanio Luke Sebastian](https://github.com/SanioLukeIDE)
+[Sanio Luke Sebastian](https://github.com/SanioLuke/)
 
 Do you want to contribute?
 --------------------------
