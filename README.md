@@ -113,7 +113,7 @@ Now, after success Retorfit connection and query setup, I have made a custom han
 ```
 
 ### API Calling
-Now the successful intergration of API is called on Home Page and Product Display Page to display the details to the user
+Now the successful intergration of API is called on ``Home Page`` and ``Product Display Page`` to display the details to the user
 
 ```java
     // Products retrieval API Call
@@ -130,6 +130,23 @@ Now the successful intergration of API is called on Home Page and Product Displa
             }
         });
 ```
+
+```java
+    // Product Item Details retrieval API Call
+    ProductsApiHandler.callProductDetailApi(productId, new ProductsInterface() {
+            @Override
+            public void getProductItem(ProductModel product) {
+                if (product != null) {
+                     // Handling if data is received successfully.
+                     // Some code below. The code is actually available in the project
+                } else {
+                    // Handling if data is not received.
+                    // Some code below. The code is actually available in the project
+                }
+            }
+        });
+```
+
 ### Design (XML)
 * For displaying the list of products, I have used ``RecyclerView``
 * For product item design, I have used ``MaterialCardView`` and nested ``RelativeLayout`` and ``LinearLayout``
