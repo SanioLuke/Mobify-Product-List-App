@@ -160,14 +160,6 @@ Now the successful intergration of API is called on ``Home Page`` and ``Product 
         android:layout_marginHorizontal="10dp"/>
 ```
 
-# Contributors
-
-[Sanio Luke Sebastian](https://github.com/SanioLuke/)
-
-Do you want to contribute?
---------------------------
-
-Feel free to give any suggestion & point out bugs, we are all  be glad to improve it with your help.
 
 [1]: ./images/screenshot_01.jpg
 [2]: ./images/screenshot_02.jpg
