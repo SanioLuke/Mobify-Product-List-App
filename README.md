@@ -1,7 +1,7 @@
 ![ads logo][adslogo] Mobify - Product List App [Version]() 1.0.0
 ======
 
-Please download the APK File of this application from here : ![Download APK][4]
+Please download the APK File of this application from here : ![APK_FILE][4]
 
 This android application is a small integration of API call for retriving sample products data from dummy API server and displaying the list of products along with its other details. The app includes pages like
 
@@ -166,5 +166,5 @@ Now the successful intergration of API is called on ``Home Page`` and ``Product 
 [1]: ./images/screenshot_01.jpg
 [2]: ./images/screenshot_02.jpg
 [3]: ./images/screenshot_03.jpg
-[4]: ./images/Mobify - Product List App.apk
+[4]: ./images/mobify.apk
 [adslogo]: ./images/app_icon.webp
