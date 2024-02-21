@@ -22,71 +22,130 @@ Screenshots
 Usage
 -----
 
-### Native Ad
-To start using the Native Ad you just need to add ``NativeView`` inside your .xml file:
-* ``app:adType`` can either be `SMALL`, `MEDIUM` or `FULL`.
-* To add a placeholder to the NativeView use the `app:placeholder` and pass a drawable.
-* By `Default` its ScaleType is `FitXY`
-```xml
-    <com.adsmodule.api.adsModule.views.NativeView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:adType="{SMALL|MEDIUM|FULL}" />
+### Retrofit Connection
+To connect to the dummy API, I have used ``Retrofit API Integration`` inside a seperate java folder called ``Retrofit``:
+``` Retrofit Client
+    private static final String BASE_URL = "https://dummyjson.com/";
+    public static Retrofit getRetrofitInstance() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
+    }
 ```
 
-### Banner Ad
-To start using the Native Ad you just need to add ``BannerView`` inside your .xml file:
-* ``Collapsible Banner Ad`` to enable Collapsible Banner Ad use the `app:isCollapsible` and set its value as `true`.
-* By Default ``Collapsible Banner Ad`` is disabled.
+### Retrofit Interface
+Now, to add query to the established retrofit connection, I have made a custom retrofit based interfaces, so that using these interfaces the API calling can be handling with repective body and queries 
+``` Retrofit Interfaces
+    @GET("products")
+    Call<ResponseModel> getAllProducts();
 
-```xml
-    <com.adsmodule.api.adsModule.views.BannerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:isCollapsible="false"/>
+    @GET("products/{id}")
+    Call<ProductModel> getProductDetail(@Path("id") int productId);
 ```
 
+### Retrofit API Call Handler
+Now, after success Retorfit connection and query setup, I have made a custom handler functions to fetch corresponding response so that handling the data in activity would be much easier.
 
-### AppOpen Ad
-To start using the AppOpen Ad you just need to add ``AdUtils.showAppOpenAd()`` inside your .java file:
+* For that, I have made custom functions with each having a interface parameter, so that after successful retrival of the data, the data can be directly passed to the activity for display
+* Created 2 functions: 1. callProductsApi() for API call for all the products, 2. callProductDetailApi() for retrieving details of a particular product 
+
+``` API Products Interface
+    interface ProductsInterface {
+        default void getProducts(List<ProductModel> products) {
+            Log.e(TAG, "Products: " + products);
+        }
+
+        default void getProductItem(ProductModel product) {
+            Log.e(TAG, "Product Detail: " + product);
+        }
+    }
+```
 
 ```java
-    AdUtils.showAppOpenAd(activity, isLoaded -> {
-      // The code inside will the execute after dismiss
-      // or in case the ad fails
-    });
+    public static void callProductsApi(ProductsInterface productsInterface) {
+        ProductsApiInterface productsApiInterface = RetrofitClient.getRetrofitInstance().create(ProductsApiInterface.class);
+        Call<ResponseModel> callAllProducts = productsApiInterface.getAllProducts();
+        callAllProducts.enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseModel> call, @NonNull Response<ResponseModel> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<ProductModel> products = response.body().getProducts();
+                    productsInterface.getProducts(products);
+                } else {
+                    productsInterface.getProducts(null);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseModel> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: Products API Call failure : " + t.getLocalizedMessage());
+                productsInterface.getProducts(null);
+            }
+        });
 ```
 
-### Interstitial Ad
-To start using the Interstitial Ad you just need to add ``AdUtils.showInterstitialAd()`` inside your .java file:
+``` java
+    public static void callProductDetailApi(int productId, ProductsInterface productsInterface) {
+        ProductsApiInterface productsApiInterface = RetrofitClient.getRetrofitInstance().create(ProductsApiInterface.class);
+        Call<ProductModel> callProductDetail = productsApiInterface.getProductDetail(productId);
+        callProductDetail.enqueue(new Callback<ProductModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ProductModel> call, @NonNull Response<ProductModel> response) {
+                if (response.isSuccessful()) {
+                    ProductModel productDetail = response.body();
+                    productsInterface.getProductItem(productDetail);
+                } else {
+                    productsInterface.getProducts(null);
+                }
+            }
 
-```java
-    AdUtils.showInterstitialAd(activity, isLoaded -> {
-      // The code inside will the execute after dismiss
-      // or in case the ad fails
-    });
+            @Override
+            public void onFailure(@NonNull Call<ProductModel> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: Products API Call failure : " + t.getLocalizedMessage());
+                productsInterface.getProducts(null);
+            }
+        });
+    }
 ```
 
-### Rewarded Ad
-To start using the Rewarded Ad you just need to add ``AdUtils.showRewardedAd()`` inside your .java file:
+### API Calling
+Now the successful intergration of API is called on Home Page and Product Display Page to display the details to the user
 * ``isLoaded`` will provide a boolean value by with you can determine the ad is loaded or not
 * Also can be use for determining whether the user has received the reward or not
 
 ```java
-    AdUtils.showRewardedAd(activity, isLoaded -> {
-        // The Code inside will the execute after dismiss
-        // or in case the ad fails
-    });
+    // Products retrieval API Call
+        ProductsApiHandler.callProductsApi(new ProductsInterface() {
+            @Override
+            public void getProducts(List<ProductModel> products) {
+                if (products != null) {
+                     // Handling if data is received successfully.
+                     // Some code below. The code is actually available in the project
+                } else {
+                    // Handling if data is not received.
+                    // Some code below. The code is actually available in the project
+                }
+            }
+        });
 ```
-### BackPress Ad
-To start using the BackPress Ad you just need to add ``AdUtils.showBackPressAd()`` inside your .java file:
+### Design (XML)
+* For displaying the list of products, I have used recyclerview
+* For product item design, I have used MaterialCardView and nested relativelayouts and linearlayouts
 
-```java
-    AdUtils.showBackPressAd(activity, isLoaded -> {
-        // The Code inside will the execute after dismiss
-        // or in case the ad fails
-    });
+``` xml
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/homeToolbarDivider"
+        android:layout_marginHorizontal="10dp"/>
 ```
+
+
 
 Cloud Notification
 -----
@@ -101,11 +160,7 @@ To start using the One Signal you have to uncomment this line of code which is i
 
 # Contributors
 
-[John Pandian](https://github.com/I-KNOWN)
-
 [Sanio Luke Sebastian](https://github.com/SanioLukeIDE)
-
-Thank you all for your work!
 
 Do you want to contribute?
 --------------------------
