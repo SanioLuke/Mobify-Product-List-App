@@ -2,7 +2,7 @@
 ======
 
 
-**``Please download the APK File of this application from here : ![Download APK][4]``**
+**``Please download the APK File of this application from here : ``** ![Download APK][4]
 
 
 
