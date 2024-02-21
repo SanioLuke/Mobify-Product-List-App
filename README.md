@@ -112,7 +112,7 @@ Do you want to contribute?
 
 Feel free to give any suggestion & point out bugs, we are all  be glad to improve it with your help.
 
-[1]: ./art/Screenshot_01.png
-[2]: ./art/Screenshot_02.png
-[3]: ./art/Screenshot_03.png
-[adslogo]: ./art/app_icon.png
+[1]: ./images/screenshot_01.jpg
+[2]: ./images/screenshot_02.jpg
+[3]: ./images/screenshot_03.jpg
+[adslogo]: ./images/app_icon.webp
