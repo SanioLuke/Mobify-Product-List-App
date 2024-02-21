@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activities.HomeActivity">
+    tools:context=".activities.ProductDisplayActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/homeToolbar"
+        android:id="@+id/productDisplayToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/homeBackButton"
+                android:id="@+id/productDisplayBackButton"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
@@ -32,7 +32,7 @@
                 app:tint="@color/black" />
 
             <TextView
-                android:id="@+id/homeTitleText"
+                android:id="@+id/productDisplayTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -47,19 +47,15 @@
     </androidx.appcompat.widget.Toolbar>
 
     <View
-        android:id="@+id/homeToolbarDivider"
+        android:id="@+id/productDisplayToolbarDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/homeToolbar"
+        android:layout_below="@+id/productDisplayToolbar"
         android:background="@color/black10"
         android:layout_marginBottom="10dp"/>
 
-
-    <TextView
-        android:id="@+id/emptyDataMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:layout_centerInParent="true"/>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    
 </RelativeLayout>
